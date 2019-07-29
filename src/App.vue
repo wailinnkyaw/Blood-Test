@@ -1,45 +1,74 @@
 <template>
   <v-app>
-    <v-navigation-drawer :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" fixed app>
-      <v-list class="pt-1" dense>
-        <v-list-tile v-for="item in items" :key="item.title" :to="item.to">
+    <v-navigation-drawer v-model="sidebar" app dark :disable-route-watcher="drw">
+      <v-list>
+        <v-list-tile v-for="item in menuItems" :key="item.title" :to="item.path">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-     <v-toolbar fixed app :clipped-left="clipped" dark color="primary">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+
+    <v-toolbar color="red darken-2" dark app>
+      Kayuna
       <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>favorite</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon @click="sidebarControl">more_vert</v-icon>
+      </v-btn>
     </v-toolbar>
+
     <v-content>
-      <router-view></router-view>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-content>
   </v-app>
 </template>
-
 <script>
 export default {
   name: "App",
-  data() {
-    return {
-      title: "Vuesterplate",
-      clipped: true,
-      drawer: null,
-      fixed: false,
-      items: [
-        { icon: "bubble_chart", title: "Page One - route /", to: "/" },
-        { icon: "bubble_chart", title: "Page Two - route /page2", to: "/page2" }, 
-        { icon: "bubble_chart", title: "Axios Sample - route /axios-sample", to: "/axios-sample" }
-      ],
-      miniVariant: false
-    };
+  data: () => ({
+    items: ["All", "Family", "Friends", "Coworkers"],
+    sidebar: false,
+    clipped: false,
+    menuItems: [
+      { title: "Group", path: "/", icon: "home" },
+      { title: "Blood-Type", path: "/blood-type", icon: "face" },
+      { title: "Donor", path: "/donor", icon: "lock_open" }
+    ],
+    drw: true,
+    expand: false,
+    model: null,
+    states: [
+      "Iowa",
+      "Kentucky",
+      "Louisiana",
+      "Kansas",
+      "Maine",
+      "Vermont",
+      "Virgin Island",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming"
+    ]
+  }),
+  methods: {
+    sidebarControl: function(event) {
+      if (this.sidebar == false) {
+        this.sidebar = true;
+      } else {
+        this.sidebar = false;
+      }
+    }
   }
 };
 </script>

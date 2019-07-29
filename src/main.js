@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import './plugins/vuetify'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import './plugins/vuetify';
+import App from './App.vue';
+import router from './router';
 import titleComponent from './components/Custom/title.component.vue';
 
 Vue.config.productionTip = false

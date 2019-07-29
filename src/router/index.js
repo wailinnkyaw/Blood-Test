@@ -1,32 +1,37 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import PageOne from '../components/Pages/page1.vue'
-import PageTwo from '../components/Pages/page2.vue'
-import AxiosSample from '../components/Pages/axiosSample.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import group from "../components/Pages/group.vue";
+import bloodType from "../components/Pages/blood.vue";
+import donor from "../components/Pages/donor.vue";
+import test from "../components/Pages/test.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: '/',
-        name: "PageOne",
-        component: PageOne
-    },
-    {
-        path: '/page2',
-        name: "PageTwo",
-        component: PageTwo
-    }
-    ,
-    {
-        path: '/axios-sample',
-        name: "AxiosSample",
-        component: AxiosSample
-    }
-]
+  {
+    path: "/",
+    name: "Group",
+    component: group
+  },
+  {
+    path: "/blood-type",
+    name: "Blood",
+    component: bloodType
+  },
+  {
+    path: "/donor",
+    name: "Donor",
+    component: donor
+  },
+  {
+    path: "/test",
+    name: "Test",
+    component: test
+  }
+];
 
 const router = new VueRouter({
-    routes
-})
+  routes
+});
 
-export default router
+export default router;
